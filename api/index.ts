@@ -5,7 +5,6 @@ import { registerOAuthRoutes } from '../server/_core/oauth';
 import { registerStorageProxy } from '../server/_core/storageProxy';
 import { appRouter } from '../server/routers';
 import { createContext } from '../server/_core/context';
-import { serveStatic } from '../server/_core/vite';
 
 const app = express();
 
@@ -26,10 +25,12 @@ app.use(
   })
 );
 
-// Serve static files
-serveStatic(app);
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
 
-// Export handler for Vercel
+// Export for Vercel
 export default function handler(req: VercelRequest, res: VercelResponse) {
   return app(req, res);
 }
