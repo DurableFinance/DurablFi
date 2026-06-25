@@ -141,56 +141,56 @@
 ## Phase 3: Sidebar + Main Panel Restructure
 
 ### Layout Architecture
-- [ ] Remove all hero, step sections, and multi-section page layout
-- [ ] Implement sidebar (280px, #0d0d0d, fixed) + main panel (#0a0a0a, scrollable) layout
+- [x] Remove all hero, step sections, and multi-section page layout
+- [x] Implement sidebar (280px, #0d0d0d, fixed) + main panel (#0a0a0a, scrollable) layout
 - [ ] Hide sidebar on mobile, show top filter bar instead
-- [ ] Preserve all backend tRPC procedures and DefiLlama data fetching
+- [x] Preserve all backend tRPC procedures and DefiLlama data fetching
 
 ### Left Sidebar
-- [ ] Add "DurablFi" logo (18px white bold) + "Yield Intelligence" subtitle (11px #64748b)
-- [ ] Add divider (1px solid #1a1a1a)
-- [ ] Implement search input (background #111111, border #1a1a1a, placeholder "Search pools...")
-- [ ] Add PROTOCOL filter buttons: All, Pendle, Aave, Morpho, Curve, Compound
-- [ ] Add CHAIN filter buttons: All, Ethereum, Arbitrum, Base
-- [ ] Implement pool list with symbol, protocol+chain, APY right-aligned
+- [x] Add "DurablFi" logo (18px white bold) + "Yield Intelligence" subtitle (11px #64748b)
+- [x] Add divider (1px solid #1a1a1a)
+- [x] Implement search input (background #111111, border #1a1a1a, placeholder "Search pools...")
+- [x] Add PROTOCOL filter buttons: All, Pendle, Aave, Morpho, Curve, Compound
+- [x] Add CHAIN filter buttons: All, Ethereum, Arbitrum, Base
+- [x] Implement pool list with symbol, protocol+chain, APY right-aligned
 - [ ] Add pulsing green dot next to "LIVE POOLS" label
-- [ ] Pool selection: click to load in main panel, highlight with left border
+- [x] Pool selection: click to load in main panel, highlight with left border
 
 ### Main Panel — Empty State
-- [ ] Show centered empty state when no pool selected
-- [ ] Icon (32px #22d3ee), heading "Select a pool to begin analysis", subtext
+- [x] Show centered empty state when no pool selected
+- [x] Icon (32px #22d3ee), heading "Select a pool to begin analysis", subtext
 
 ### Main Panel — Pool Selected
-- [ ] Pool header: symbol (24px white bold), protocol · chain (13px #64748b), APY right-aligned (28px #22d3ee)
-- [ ] Tab navigation: Decomposition, Durability Score, Risk Flags, Execute
-- [ ] Active tab: #22d3ee text, 2px bottom border
-- [ ] Inactive tab: #64748b text
+- [x] Pool header: symbol (24px white bold), protocol · chain (13px #64748b), APY right-aligned (28px #22d3ee)
+- [x] Tab navigation: Decomposition, Durability Score, Risk Flags, Execute
+- [x] Active tab: #22d3ee text, 2px bottom border
+- [x] Inactive tab: #64748b text
 
 ### Tab 1: Decomposition
-- [ ] "APY Breakdown" heading (16px white)
-- [ ] Horizontal bars: Base Yield (#22d3ee), Reward APY (#4ade80), Emissions Boost (#fbbf24)
-- [ ] Animate bars from 0 to final width, 0.6s ease-out
-- [ ] Show 30d Average APY stat below
+- [x] "APY Breakdown" heading (16px white)
+- [x] Horizontal bars: Base Yield (#22d3ee), Reward APY (#4ade80), Emissions Boost (#fbbf24)
+- [x] Animate bars from 0 to final width, 0.6s ease-out
+- [x] Show 30d Average APY stat below
 
 ### Tab 2: Durability Score
-- [ ] Large score number (72px bold), color-coded: red 0-40, yellow 41-69, green 70-100
-- [ ] Count up animation from 0 on tab open
-- [ ] "/ 100" label beside score
-- [ ] Score explanation text (one sentence based on range)
-- [ ] 2x2 grid: baseScore, tvlScore, stabilityScore, emissionsScore cards
+- [x] Large score number (72px bold), color-coded: red 0-40, yellow 41-69, green 70-100
+- [x] Count up animation from 0 on tab open
+- [x] "/ 100" label beside score
+- [x] Score explanation text (one sentence based on range)
+- [x] 2x2 grid: baseScore, tvlScore, stabilityScore, emissionsScore cards
 
 ### Tab 3: Risk Flags
-- [ ] "Risk Assessment" heading
-- [ ] Risk flag pills with colors: red/yellow/green with semi-transparent backgrounds
-- [ ] Pool metadata grid: Protocol, Chain, TVL, 30d Avg APY, Symbol, Pool ID
-- [ ] DYOR disclaimer at bottom
+- [x] "Risk Assessment" heading
+- [x] Risk flag pills with colors: red/yellow/green with semi-transparent backgrounds
+- [x] Pool metadata grid: Protocol, Chain, TVL, 30d Avg APY, Symbol, Pool ID
+- [x] DYOR disclaimer at bottom
 
 ### Tab 4: Execute
-- [ ] "Execute Strategy" heading
-- [ ] 5 steps in card: Bridge assets, Approve tokens, Swap to position, Deposit to vault, Confirm on-chain
-- [ ] Number badges (01-05) with #1a1a1a background
-- [ ] Full-width EXECUTE STRATEGY button (#22d3ee background, #0a0a0a text)
-- [ ] Hover tooltip: "Execution launches in Phase 2 — wallet connect coming soon."
+- [x] "Execute Strategy" heading
+- [x] 5 steps in card: Bridge assets, Approve tokens, Swap to position, Deposit to vault, Confirm on-chain
+- [x] Number badges (01-05) with #1a1a1a background
+- [x] Full-width EXECUTE STRATEGY button (#22d3ee background, #0a0a0a text)
+- [x] Hover tooltip: "Execution launches in Phase 2 — wallet connect coming soon."
 
 ### Mobile Layout
 - [ ] Hide sidebar, show top bar with "DurablFi" left and filter icon right
@@ -198,19 +198,19 @@
 - [ ] Tapping pool opens full-screen analysis overlay with back button
 
 ### Global Cleanup
-- [ ] Remove all light background sections (#f0f0f8)
-- [ ] Remove "Made with Manus" badge
-- [ ] Remove "LIVE DEMO" badge
-- [ ] Remove all STEP labels
-- [ ] Set background throughout to #0a0a0a
+- [x] Remove all light background sections (#f0f0f8)
+- [x] Remove "Made with Manus" badge
+- [x] Remove "LIVE DEMO" badge
+- [x] Remove all STEP labels
+- [x] Set background throughout to #0a0a0a
 - [ ] Add card hover: translateY(-2px), 0.2s ease
 - [ ] Style scrollbar: 4px width, #1a1a1a thumb
 
 ### Testing & Verification
-- [ ] Verify sidebar/main panel layout on desktop
+- [x] Verify sidebar/main panel layout on desktop
 - [ ] Test mobile top bar and pool pills overlay
-- [ ] Verify all tabs work and display correct data
-- [ ] Test filter functionality (protocol, chain, search)
+- [x] Verify all tabs work and display correct data
+- [x] Test filter functionality (protocol, chain, search)
 - [ ] Verify animations: bar fill, score count-up, card hover
-- [ ] Check TypeScript compilation
-- [ ] Run all vitest tests to ensure backend intact
+- [x] Check TypeScript compilation
+- [x] Run all vitest tests to ensure backend intact

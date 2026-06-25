@@ -39,7 +39,7 @@ export default function Sidebar({
   onSearchChange,
 }: SidebarProps) {
   return (
-    <aside className="flex flex-col w-[280px] bg-[#0d0d0d] border-r border-[#1a1a1a] overflow-y-auto">
+    <aside className="flex flex-col w-[280px] bg-[#0d0d0d] border-r border-[#1a1a1a] overflow-y-auto sticky top-0 h-screen">
       {/* Header */}
       <div className="p-6">
         <h1 className="text-white font-bold text-[18px]">DurablFi</h1>
