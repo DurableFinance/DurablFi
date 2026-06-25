@@ -62,9 +62,9 @@ export default function DurabilityScoreTab({ pool }: DurabilityScoreTabProps) {
   };
 
   const getScoreExplanation = (score: number) => {
-    if (score < 41) return "This yield opportunity carries significant risk. Proceed with caution and conduct thorough due diligence.";
-    if (score < 70) return "This yield opportunity has moderate risk. Consider your risk tolerance before committing capital.";
-    return "This yield opportunity demonstrates strong durability. It may be suitable for longer-term positions.";
+    if (score < 41) return "This yield is heavily emissions-driven. High decay risk.";
+    if (score < 70) return "This yield has moderate emissions dependency. Monitor closely.";
+    return "This yield is primarily backed by real protocol activity.";
   };
 
   return (
