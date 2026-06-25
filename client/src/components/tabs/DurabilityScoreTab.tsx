@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { calculateDurabilityScore } from "@/lib/durability";
+import { calculateDurabilityScore, calculateDurabilityScoreFromPool } from "@/lib/durability";
 
 interface YieldPool {
   pool: string;
@@ -28,7 +28,6 @@ export default function DurabilityScoreTab({ pool }: DurabilityScoreTabProps) {
   });
 
   useEffect(() => {
-    const { calculateDurabilityScoreFromPool } = require('@/lib/durability');
     const result = calculateDurabilityScoreFromPool(pool);
     const breakdown = {
       baseScore: result.baseScore,
