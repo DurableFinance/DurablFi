@@ -19,44 +19,62 @@ interface PoolCardProps {
 }
 
 export default function PoolCard({ pool, isSelected, onSelect }: PoolCardProps) {
+  const tokenSymbol = pool.symbol.substring(0, 3).toUpperCase();
+
   return (
     <button
-      className="card p-6 cursor-pointer transition-all w-full text-left flex flex-col h-full"
-      style={{
-        backgroundColor: "var(--card)",
-        border: isSelected ? "1px solid var(--accent)" : "1px solid var(--border)",
-        boxShadow: isSelected ? "0 0 25px rgba(34, 211, 238, 0.15)" : "none",
-      }}
+      className={`card card-light pool-card p-6 w-full text-left flex flex-col h-full ${
+        isSelected ? 'selected' : ''
+      }`}
       onClick={onSelect}
     >
-      <div className="mb-4 flex-1">
-        <h3 className="text-lg font-semibold text-white mb-1">{pool.symbol}</h3>
-        <p className="text-sm text-[#94a3b8]" style={{ color: "var(--text-secondary)" }}>
-          {pool.project} • {pool.chain}
+      {/* Token Badge */}
+      <div className="token-badge mb-4">
+        {tokenSymbol}
+      </div>
+
+      {/* Token Name */}
+      <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--text-dark)' }}>
+        {pool.symbol}
+      </h3>
+
+      {/* Protocol & Chain */}
+      <p
+        className="text-xs uppercase mb-6 flex-1"
+        style={{
+          color: 'var(--text-muted)',
+          letterSpacing: '0.1em',
+          lineHeight: '1.6',
+        }}
+      >
+        {pool.project} • {pool.chain}
+      </p>
+
+      {/* APY Section */}
+      <div className="mb-4">
+        <p
+          className="text-xs uppercase mb-2"
+          style={{
+            color: 'var(--text-muted)',
+            letterSpacing: '0.1em',
+          }}
+        >
+          APY
+        </p>
+        <p className="text-3xl font-bold" style={{ color: 'var(--emerald)' }}>
+          {formatAPY(pool.apy)}%
         </p>
       </div>
 
-      <div className="space-y-3 mb-6">
-        <div className="flex justify-between items-center">
-          <span className="text-sm text-[#64748b]" style={{ color: "var(--text-muted)" }}>
-            APY
-          </span>
-          <span className="text-xl font-bold text-[#22d3ee]" style={{ color: "var(--accent)" }}>
-            {formatAPY(pool.apy)}%
-          </span>
-        </div>
-
-        <div className="flex justify-between items-center">
-          <span className="text-sm text-[#64748b]" style={{ color: "var(--text-muted)" }}>
-            TVL
-          </span>
-          <span className="text-sm font-semibold text-white">{formatTVL(pool.tvlUsd)}</span>
-        </div>
-      </div>
-
-      <div className="btn-primary w-full mt-auto text-center">
-        Decompose
-      </div>
+      {/* TVL */}
+      <p
+        className="text-sm"
+        style={{
+          color: 'var(--text-secondary)',
+        }}
+      >
+        TVL: {formatTVL(pool.tvlUsd)}
+      </p>
     </button>
   );
 }

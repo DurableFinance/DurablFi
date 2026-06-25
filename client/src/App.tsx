@@ -1,38 +1,67 @@
+import { useState } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
+import { trpc } from "@/lib/trpc";
+import HeroSection from "./components/HeroSection";
+import PoolSelectionSection from "./components/PoolSelectionSection";
+import YieldDecompositionSection from "./components/YieldDecompositionSection";
+import AttackSurfaceMapSection from "./components/AttackSurfaceMapSection";
+import RiskDisclosureSection from "./components/RiskDisclosureSection";
+import ExecuteStrategySection from "./components/ExecuteStrategySection";
+import Footer from "./components/Footer";
 
-function Router() {
-  // make sure to consider if you need authentication for certain routes
-  return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
-  );
+interface YieldPool {
+  pool: string;
+  chain: string;
+  project: string;
+  symbol: string;
+  tvlUsd: number;
+  apy: number;
+  apyBase?: number | null;
+  apyReward?: number | null;
+  apyMean30d?: number | null;
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
 function App() {
+  const [selectedPool, setSelectedPool] = useState<YieldPool | null>(null);
+  const { data: response, isLoading } = trpc.yield.getPools.useQuery();
+
+  const pools = response?.data || [];
+
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <div style={{ backgroundColor: 'var(--bg-darker)' }}>
+            {/* Hero Section */}
+            <HeroSection />
+
+            {/* Pool Selection Section */}
+            <PoolSelectionSection
+              pools={pools}
+              isLoading={isLoading}
+              selectedPool={selectedPool}
+              onSelectPool={setSelectedPool}
+            />
+
+            {/* Yield Decomposition Section */}
+            <YieldDecompositionSection selectedPool={selectedPool} />
+
+            {/* Attack Surface Map Section */}
+            <AttackSurfaceMapSection selectedPool={selectedPool} />
+
+            {/* Risk Disclosure Section */}
+            <RiskDisclosureSection selectedPool={selectedPool} />
+
+            {/* Execute Strategy Section */}
+            <ExecuteStrategySection />
+
+            {/* Footer */}
+            <Footer />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

@@ -72,3 +72,67 @@
 - [x] Verify all colors match design system (design tokens in CSS variables, accent colors in components)
 - [x] Test error handling and loading states (error UI and loading skeletons implemented)
 - [x] Verify no hardcoded data anywhere (all data from DefiLlama API, no mock/hardcoded pools)
+
+
+## Phase 2: Premium UI Rebuild
+
+### Global Design System
+- [x] Update body background with gradient #050510 to #0a0a1a
+- [x] Implement alternating light (#f0f0f8) and dark (#0a0a1a) sections
+- [x] Add 80px+ padding to all sections
+- [x] Update color palette: indigo (#6366f1), emerald (#10b981), slate grays
+
+### Hero Section
+- [x] Full viewport height with radial gradient background
+- [x] "LIVE DEMO · RISK INTELLIGENCE" pill badge
+- [x] "Durabl" white + "IFi" blue gradient logo (56px desktop, 40px mobile)
+- [x] Tagline: "Maps the full attack surface — on-chain & off-chain — before you deposit."
+- [x] "EXPLORE" text with down arrow, letter-spacing 0.2em
+
+### Pool Selection Section (STEP 1)
+- [x] Light background #f0f0f8 with "STEP 1" label in indigo
+- [x] "Select a yield position" heading
+- [x] Indigo divider line (40px, 2px)
+- [x] Pool cards: white background, gradient token badges, green APY text (28px)
+- [x] Two-column mobile, three-column desktop
+- [x] Selected card: 2px indigo border with subtle shadow
+
+### Yield Decomposition Section (STEP 2)
+- [x] Dark background with "STEP 2" label
+- [x] "TOTAL APY" label with 56px bold number
+- [x] Durability Score pill: green border, semi-transparent green background
+- [x] APY breakdown bars with indigo-to-purple gradient
+- [x] Bar labels: "Base Lending", "PT Discount", "Incentive Rewards"
+
+### Risk Disclosure Section (STEP 4)
+- [x] Dark background with "STEP 4" label
+- [x] Risk cards with dark background #111128
+- [x] Risk badge pills: HIGH RISK (red), MEDIUM RISK (amber), LOW RISK (green)
+
+### Execute Strategy Section (STEP 5)
+- [x] Dark background #0d0d2b with centered "STEP 5" label
+- [x] "Execute Strategy" heading (40px, centered)
+- [x] Frosted glass card: rgba(255,255,255,0.04) background
+- [x] Numbered steps 01-05 with badges
+- [x] Gradient button: #4f46e5 to #7c3aed with tooltip
+
+### Footer
+- [x] Dark background #050510
+- [x] "DECOMPOSE · DISCLOSE · EXECUTE" centered
+- [x] "DURABLFI" centered below
+
+### Animations
+- [x] Card hover: translateY(-6px), shadow 0 20px 40px rgba(99,102,241,0.15)
+- [x] Pool cards: border color to #6366f1 on hover
+- [x] Hero logo: fade in 0.8s, translateY 20px to 0
+- [x] Hero tagline: fade in 0.3s after logo
+- [x] Section headings: fade in on scroll, translateY 16px to 0, 0.5s
+- [x] Pool cards: stagger fade in 0.08s delay
+- [x] Decompose bars: animate width 0 to final, 0.6s ease-out
+- [x] Durability Score: count up 0 to final, 0.8s on scroll
+- [x] Risk badges: pulse animation 0.7 to 1 opacity, 2s infinite
+
+### Cleanup
+- [x] Remove flat cyan buttons
+- [x] Remove "Made with Manus" badge
+- [x] Remove white backgrounds from dark sections
