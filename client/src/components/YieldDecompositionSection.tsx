@@ -27,7 +27,7 @@ export default function YieldDecompositionSection({ selectedPool }: YieldDecompo
           apyReward: selectedPool.apyReward,
           apyMean30d: selectedPool.apyMean30d,
           tvlUsd: selectedPool.tvlUsd,
-        })
+        }).score
       : 0,
     800
   );

@@ -36,10 +36,11 @@ export default function DecomposerPanel({ pool }: DecomposerPanelProps) {
     [pool]
   );
 
-  const durabilityScore = useMemo(
+  const durabilityScoreResult = useMemo(
     () => calculateDurabilityScore(metrics),
     [metrics]
   );
+  const durabilityScore = durabilityScoreResult.score;
 
   const scoreColor = getDurabilityScoreColor(durabilityScore);
   const scoreExplanation = getDurabilityScoreExplanation(durabilityScore);

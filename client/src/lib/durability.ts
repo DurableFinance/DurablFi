@@ -11,7 +11,16 @@ interface PoolMetrics {
   tvlUsd: number;
 }
 
-export function calculateDurabilityScore(metrics: PoolMetrics): number {
+export interface DurabilityScoreResult {
+  score: number;
+  baseScore: number;
+  tvlScore: number;
+  stabilityScore: number;
+  rewardScore: number;
+  emissionsScore: number;
+}
+
+export function calculateDurabilityScore(metrics: PoolMetrics): DurabilityScoreResult {
   const {
     totalApy,
     apyBase,
@@ -22,7 +31,14 @@ export function calculateDurabilityScore(metrics: PoolMetrics): number {
 
   // Guard against zero APY to prevent NaN/Infinity
   if (totalApy <= 0) {
-    return 0;
+    return {
+      score: 0,
+      baseScore: 0,
+      tvlScore: 0,
+      stabilityScore: 0,
+      rewardScore: 0,
+      emissionsScore: 0,
+    };
   }
 
   // Base Yield Score (40 points max)
@@ -48,12 +64,30 @@ export function calculateDurabilityScore(metrics: PoolMetrics): number {
   const emissionsScore = emissionsBoost < totalApy * 0.3 ? 15 : 5;
 
   // Total score (capped at 100)
-  const durabilityScore = Math.min(
+  const score = Math.min(
     baseScore + tvlScore + stabilityScore + rewardScore + emissionsScore,
     100
   );
 
-  return Math.round(durabilityScore);
+  return {
+    score: Math.round(score),
+    baseScore: Math.round(baseScore),
+    tvlScore: Math.round(tvlScore),
+    stabilityScore: Math.round(stabilityScore),
+    rewardScore: Math.round(rewardScore),
+    emissionsScore: Math.round(emissionsScore),
+  };
+}
+
+// Support both pool interface and metrics interface
+export function calculateDurabilityScoreFromPool(pool: any): DurabilityScoreResult {
+  return calculateDurabilityScore({
+    totalApy: pool.apy || 0,
+    apyBase: pool.apyBase,
+    apyReward: pool.apyReward,
+    apyMean30d: pool.apyMean30d,
+    tvlUsd: pool.tvlUsd,
+  });
 }
 
 export function getDurabilityScoreColor(score: number): string {
@@ -70,6 +104,16 @@ export function getDurabilityScoreExplanation(score: number): string {
     return "This yield has moderate emissions dependency. Monitor closely.";
   }
   return "This yield is heavily emissions-driven. High decay risk.";
+}
+
+export function getDurabilityScoreExplanationUI(score: number): string {
+  if (score >= 70) {
+    return "This yield opportunity demonstrates strong durability. It may be suitable for longer-term positions.";
+  }
+  if (score >= 41) {
+    return "This yield opportunity has moderate risk. Consider your risk tolerance before committing capital.";
+  }
+  return "This yield opportunity carries significant risk. Proceed with caution and conduct thorough due diligence.";
 }
 
 interface RiskFlag {
@@ -143,6 +187,16 @@ export function generateRiskFlags(metrics: PoolMetrics): RiskFlag[] {
   }
 
   return flags;
+}
+
+export function generateRiskFlagsFromPool(pool: any): RiskFlag[] {
+  return generateRiskFlags({
+    totalApy: pool.apy || 0,
+    apyBase: pool.apyBase,
+    apyReward: pool.apyReward,
+    apyMean30d: pool.apyMean30d,
+    tvlUsd: pool.tvlUsd,
+  });
 }
 
 export function formatTVL(tvlUsd: number): string {
