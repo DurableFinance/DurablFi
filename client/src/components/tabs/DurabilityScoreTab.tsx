@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { calculateDurabilityScore, calculateDurabilityScoreFromPool } from "@/lib/durability";
+import { calculateDurabilityScore, calculateDurabilityScoreFromPool } from "../../lib/durability";
 import { Shield, TrendingUp, Layers, Activity, Award } from "lucide-react";
 
 interface YieldPool {
