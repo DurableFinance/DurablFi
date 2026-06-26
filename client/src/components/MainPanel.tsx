@@ -28,12 +28,14 @@ export default function MainPanel({ selectedPool }: MainPanelProps) {
 
   if (!selectedPool) {
     return (
-      <main className="flex-1 bg-[#0a0a0a] flex items-center justify-center">
-        <div className="text-center">
-          <Grid size={32} className="text-[#22d3ee] mx-auto mb-4" />
-          <h2 className="text-white text-[20px] font-semibold mb-2">Select a pool to begin analysis</h2>
-          <p className="text-[#64748b] text-[14px]">
-            Choose from the live pool list to decompose yield, score durability, and assess risk.
+      <main className="flex-1 bg-[#09090b] flex items-center justify-center p-6">
+        <div className="max-w-md w-full bg-[#141416]/60 border border-[#27272a]/50 rounded-2xl p-8 backdrop-blur-md text-center shadow-xl">
+          <div className="w-12 h-12 bg-[#22d3ee]/10 rounded-xl flex items-center justify-center mx-auto mb-4 border border-[#22d3ee]/20">
+            <Grid size={24} className="text-[#22d3ee]" />
+          </div>
+          <h2 className="text-white text-[18px] font-semibold tracking-tight mb-2">Select a pool to begin analysis</h2>
+          <p className="text-[#a1a1aa] text-[14px] leading-relaxed">
+            Choose from the live pool list to decompose yield mechanics, audit durability scores, and assess dynamic execution risks.
           </p>
         </div>
       </main>
@@ -41,32 +43,37 @@ export default function MainPanel({ selectedPool }: MainPanelProps) {
   }
 
   return (
-    <main className="flex-1 bg-[#0a0a0a] flex flex-col overflow-hidden">
-      {/* Pool Header */}
-      <div className="border-b border-[#1a1a1a] p-6">
-        <div className="flex justify-between items-start mb-4">
+    <main className="flex-1 bg-[#09090b] flex flex-col overflow-hidden p-6 gap-6">
+      {/* Premium Integrated Header and Tab Bar Container */}
+      <div className="bg-[#141416]/60 border border-[#27272a]/50 rounded-2xl p-6 backdrop-blur-md shadow-lg flex flex-col gap-6">
+        <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-white font-bold text-[24px]">{selectedPool.symbol}</h1>
-            <p className="text-[#64748b] text-[13px]">
-              {selectedPool.project} · {selectedPool.chain}
+            <div className="flex items-center gap-3 mb-1">
+              <h1 className="text-white font-bold text-[24px] tracking-tight">{selectedPool.symbol}</h1>
+              <span className="px-2.5 py-0.5 text-[11px] font-medium rounded-md uppercase tracking-wider bg-[#27272a] text-[#a1a1aa] border border-[#3f3f46]/50">
+                {selectedPool.chain}
+              </span>
+            </div>
+            <p className="text-[#71717a] text-[13px] font-medium">
+              Protocol: <span className="text-[#e4e4e7]">{selectedPool.project}</span>
             </p>
           </div>
-          <div className="text-right">
-            <p className="text-[#22d3ee] font-bold text-[28px]">{selectedPool.apy.toFixed(2)}%</p>
-            <p className="text-[#64748b] text-[11px]">APY</p>
+          <div className="text-right bg-[#1c1c1e] px-4 py-2 rounded-xl border border-[#27272a]">
+            <p className="text-[#22d3ee] font-mono font-bold text-[26px] leading-none mb-1">{selectedPool.apy.toFixed(2)}%</p>
+            <p className="text-[#71717a] text-[10px] font-bold uppercase tracking-widest">Live APY</p>
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="flex gap-6 border-t border-[#1a1a1a] pt-4 -mx-6 px-6">
+        {/* Institutional Pill-Style Tab Bar */}
+        <div className="flex bg-[#09090b] p-1 rounded-xl border border-[#27272a] max-w-xl">
           {tabs.map((tab, idx) => (
             <button
               key={tab}
               onClick={() => setActiveTab(idx)}
-              className={`pb-2 text-[13px] font-medium transition-colors ${
+              className={`flex-1 py-2 px-3 text-[13px] font-medium rounded-lg transition-all duration-200 ${
                 activeTab === idx
-                  ? "text-[#22d3ee] border-b-2 border-[#22d3ee]"
-                  : "text-[#64748b] hover:text-[#94a3b8]"
+                  ? "bg-[#1c1c1e] text-[#22d3ee] shadow-sm border border-[#27272a] font-semibold"
+                  : "text-[#71717a] hover:text-[#e4e4e7]"
               }`}
             >
               {tab}
@@ -75,8 +82,8 @@ export default function MainPanel({ selectedPool }: MainPanelProps) {
         </div>
       </div>
 
-      {/* Tab Content */}
-      <div className="flex-1 overflow-y-auto p-6">
+      {/* Main Analytical Content Workspace Card */}
+      <div className="flex-1 overflow-y-auto bg-[#141416]/40 border border-[#27272a]/40 rounded-2xl p-6 backdrop-blur-sm shadow-inner">
         {activeTab === 0 && <DecompositionTab pool={selectedPool} />}
         {activeTab === 1 && <DurabilityScoreTab pool={selectedPool} />}
         {activeTab === 2 && <RiskFlagsTab pool={selectedPool} />}
